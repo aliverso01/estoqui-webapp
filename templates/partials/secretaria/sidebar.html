@@ -1,0 +1,93 @@
+{% load static %} 
+{% block sidebar %}
+
+    <div class="vertical-menu">
+
+        <div data-simplebar class="h-100">
+
+            <!--- Sidemenu -->
+            <div id="sidebar-menu">
+                <!-- Left Menu Start -->
+                <ul class="metismenu list-unstyled" id="side-menu">
+                    <li class="menu-title" key="Main">Dashboard</li>
+
+                    <li>
+                        <a href="{% url 'secretaria' %}" class="waves-effect">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span key="Dashboard">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="menu-title" key="Main">Processos</li>
+                    <li>
+                        <a href="{% url 'projetoSecreLista' %}" class="waves-effect">
+                            <i class="fas fa-project-diagram"></i>
+                            <span key="Dashboard">Projetos</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'projetoSecreLista' %}" class="waves-effect">
+                            <i class="fas fa-file-signature"></i>
+                            <span key="Dashboard">Emendas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'comissao' %}" class="waves-effect">
+                            <i class="fas fa-users"></i>
+                            <span key="Dashboard">Comissões</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'audienciaSecre' %}" class="waves-effect">
+                            <i class="fas fa-microphone-alt"></i>
+                            <span key="Dashboard">Audiência Pública</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'sessaoSoleNew' %}" class="waves-effect">
+                            <i class="far fa-handshake"></i>
+                            <span key="Dashboard">Sessão Solene</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'sessaoOridNew' %}" class="waves-effect">
+                            <i class="far fa-calendar-alt"></i>
+                            <span key="Dashboard">Sessão Ordinária</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'sessaoExtradNew' %}" class="waves-effect">
+                            <i class="far fa-calendar-plus"></i>
+                            <span key="Dashboard">Sessão Extraordinária</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'notaListar' %}" class="waves-effect">
+                            <i class="far fa-sticky-note"></i>
+                            <span key="Dashboard">Notas/Moções</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'listar_pautas' %}" class="waves-effect">
+                            <i class="far fa-clipboard"></i>
+                            <span key="Dashboard">Pautas</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'requeriSecre' %}" class="waves-effect">
+                            <i class="far fa-file-alt"></i>
+                            <span key="Dashboard">Requerimentos</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{% url 'requeriSecre' %}" class="waves-effect">
+                            <i class="far fa-arrow-alt-circle-up"></i>
+                            <span key="Dashboard">Indicações</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!-- Sidebar -->
+        </div>
+    </div>
+
+{% endblock %}

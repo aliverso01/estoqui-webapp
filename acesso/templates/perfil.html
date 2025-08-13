@@ -1,0 +1,28 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container mt-5">
+    <h3>PERFIL</h3>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ perfilForm|crispy }}
+        <button type="submit" class="btn btn-success btn-lg">SALVAR</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_head %}
+{{ block.super }}
+<script>
+    // Certifique-se de que o elemento 'fotoperfil' esteja carregado antes de tentar atualizá-lo
+    document.addEventListener("DOMContentLoaded", function() {
+        var fotoperfil = "{{ perfilForm.instance.foto.url }}";  // Ajuste conforme a estrutura do seu modelo e local da foto
+        var fotoperfilElement = document.getElementById('fotoperfil');
+        if (fotoperfil && fotoperfilElement) {
+            fotoperfilElement.src = fotoperfil;
+        }
+    });
+</script>
+{% endblock %}

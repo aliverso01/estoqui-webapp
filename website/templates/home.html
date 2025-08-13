@@ -1,0 +1,490 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html class="wide wow-animation" lang="pt-BR">
+  <head>
+    <title>Estoqui</title>
+    <meta name="viewport" content="width=device-width height=device-height initial-scale=1.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="icon" href="{% static 'static_website/images/001-sm.png' %}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800%7CMuli:100,300,400,600,800">
+    <link rel="stylesheet" href="{% static 'static_website/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'static_website/css/fonts.css' %}">
+    <link rel="stylesheet" href="{% static 'static_website/css/style.css' %}">
+    <style>
+      @media screen and (max-width: 720px) {
+    #img_computador {
+        margin-top: -50px;
+        transition: transform 0.3s ease-in-out;
+    }
+  
+    #img_computador:hover {
+        transform: scale(1.1);
+    }
+}
+
+@media screen and (min-width: 721px) {
+    #img_computador {
+        margin-top: -100px;
+        transition: transform 0.3s ease-in-out;
+    }
+  
+    #img_computador:hover {
+        transform: scale(1.1);
+    }
+}
+    @media screen and (max-width: 720px) {
+     .scroll-down-col {
+      display: none;
+      }
+    }
+
+
+
+
+
+    .pricing-content{position:relative;}
+.pricing_design{
+    position: relative;
+    margin: 0px 15px;
+}
+.pricing_design .single-pricing{
+    background:#3375ec;
+    padding: 60px 40px;
+    border-radius:30px;
+    box-shadow: 0 10px 40px -10px rgba(0,64,128,.2);
+    position: relative;
+    z-index: 1;
+}
+.pricing_design .single-pricing:before{
+    content: "";
+    background-color: #fff;
+    width: 100%;
+    height: 100%;
+    border-radius: 18px 18px 190px 18px;
+    border: 1px solid #eee;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+}
+.price-head{}
+.price-head h2 {
+	margin-bottom: 20px;
+	font-size: 26px;
+	font-weight: 600;
+}
+.price-head h1 {
+	font-weight: 600;
+	margin-top: 30px;
+	margin-bottom: 5px;
+}
+.price-head span{}
+
+.single-pricing ul{list-style:none;margin-top: 30px;}
+.single-pricing ul li {
+	line-height: 36px;
+}
+.single-pricing ul li i {
+	background: #3375ec;
+	color: #fff;
+	width: 20px;
+	height: 20px;
+	border-radius: 30px;
+	font-size: 11px;
+	text-align: center;
+	line-height: 20px;
+	margin-right: 6px;
+}
+.pricing-price{}
+
+.price_btn {
+	background: #3375ec;
+	padding: 10px 30px;
+	color: #fff;
+	display: inline-block;
+	margin-top: 20px;
+	border-radius: 2px;
+	-webkit-transition: 0.3s;
+	transition: 0.3s;
+}
+.price_btn:hover{background:#0aa1d6;}
+a{
+text-decoration:none;    
+}
+
+.section-title {
+    margin-bottom: 60px;
+}
+.text-center {
+    text-align: center!important;
+}
+
+.section-title h2 {
+    font-size: 45px;
+    font-weight: 600;
+    margin-top: 0;
+    position: relative;
+    text-transform: capitalize;
+}
+
+
+      
+  </style>
+    <style>.ie-panel{display: none;background: #212121;padding: 10px 0;box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3);clear: both;text-align:center;position: relative;z-index: 1;} html.ie-10 .ie-panel, html.lt-ie-10 .ie-panel {display: block;}</style>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+          var scrollDownImage = document.querySelector('.scroll-down-col img');
+          scrollDownImage.addEventListener('click', function() {
+              var targetElement = document.getElementById('solucoes');
+              if (targetElement) {
+                  var targetPosition = targetElement.getBoundingClientRect().top;
+                  var startPosition = window.pageYOffset;
+                  var startTime = null;
+                  var duration = 1000; // Duração da animação em milissegundos
+    
+                  function animation(currentTime) {
+                      if (startTime === null) startTime = currentTime;
+                      var timeElapsed = currentTime - startTime;
+                      var run = ease(timeElapsed, startPosition, targetPosition, duration);
+                      window.scrollTo(0, run);
+                      if (timeElapsed < duration) requestAnimationFrame(animation);
+                  }
+    
+                  function ease(t, b, c, d) {
+                      t /= d / 2;
+                      if (t < 1) return c / 2 * t * t + b;
+                      t--;
+                      return -c / 2 * (t * (t - 2) - 1) + b;
+                  }
+    
+                  requestAnimationFrame(animation);
+              }
+          });
+      });
+    </script>
+      
+  </head>
+  <body>
+    <div class="preloader" id="loading">
+      <div class="preloader-body">
+        <div id="loading-center-object">
+          <div class="object" id="object_four"></div>
+          <div class="object" id="object_three"></div>
+          <div class="object" id="object_two"></div>
+          <div class="object" id="object_one"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page" id="inicio">
+      <header class="section page-header">
+        <!-- RD Navbar-->
+        <div class="rd-navbar-wrap">
+          <nav class="rd-navbar rd-navbar-modern" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-fixed" data-lg-device-layout="rd-navbar-fixed" data-xl-layout="rd-navbar-static" data-xl-device-layout="rd-navbar-static" data-xxl-layout="rd-navbar-static" data-xxl-device-layout="rd-navbar-static" data-lg-stick-up-offset="10px" data-xl-stick-up-offset="10px" data-xxl-stick-up-offset="10px" data-lg-stick-up="true" data-xl-stick-up="true" data-xxl-stick-up="true">
+            <div class="rd-navbar-main">
+              <!-- RD Navbar Panel-->
+              <div class="rd-navbar-panel">
+                <!-- RD Navbar Toggle-->
+                <button class="rd-navbar-toggle" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
+                <!-- RD Navbar Brand-->
+                <div class="rd-navbar-brand"><a class="brand" href="{% url 'home' %}"><img src="{% static 'static_website/images/001.png' %}" alt="" width="130" style="margin: 10px;"/></a>
+                </div>
+              </div>
+              <div class="rd-navbar-nav-wrap">
+                <!-- RD Navbar Nav-->
+                <ul class="rd-navbar-nav">
+                  <li class="rd-nav-item active"><a class="rd-nav-link" href="#inicio">Início</a>
+                  </li>
+                  <li class="rd-nav-item"><a class="rd-nav-link" href="#solucoes">Soluções</a>
+                  </li>
+                  <li class="rd-nav-item"><a class="rd-nav-link" href="#sobre">Sobre</a>
+                  </li>
+                  <li class="rd-nav-item"><a class="rd-nav-link" href="#contato">Contato</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="rd-navbar-element"><a class="button button-sm button-header button-winona" href="{% url 'dashboard' %}">Área de Acesso</a>
+              </div>
+              <div class="rd-navbar-dummy"></div>
+            </div>
+          </nav>
+        </div>
+      </header>
+      <section class="section parallax-container context-dark" style="background-image: url({% static 'static_website/images/background_oraculo.gif' %});">
+        <div class="parallax-content">
+          <!-- FScreen-->
+          <div class="page-header-2-inner">
+            
+
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6">
+
+              <div class="block-custom">
+
+
+
+                <h2 class="font-weight-extra-black wow clipInLeft" data-wow-delay=".1s">Estoqui</h2>
+                <h4 class="text-default wow clipInLeft" data-wow-delay=".1s">O Seu Sistema de Gestão Integrado para controle de gabinete e de campanha eleitoral. Solicite já a sua demonstração:</h4>
+                <div class="group-xl group-middle">
+                  <div><a class="button button-md button-white button-shadow button-winona wow clipInLeft" href="#solucoes" data-wow-delay=".2s">Saiba mais</a></div>
+                  <div><a class="button button-md button-primary button-shadow button-winona wow clipInLeft" href="wa.me/5584991923640" data-wow-delay=".2s">Solicite uma demonstração</a></div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+                <img id="img_computador" src="{% static 'static_website/images/computador.png' %}">
+            </div>
+            
+            <div class="col text-center scroll-down-col">
+              <a href="#solucoes">
+                  <img src="{% static 'static_website/images/scroll_down.gif' %}" style="height: 250px; margin-top: -150px; margin-bottom: -300px;" alt="Scroll Down">
+              </a>
+          </div>
+
+
+        </div>
+      </section>
+      <!-- Meet Alice-->
+      <section class="section section-md bg-gray-100 text-center">
+        <div class="container" id="solucoes">
+          <div class="badge wow fadeIn">Nossas Soluções</div>
+          <h3 class="wow fadeIn">O que o Estoqui é capaz de fazer?</h3>
+          <div class="row row-30 row-xl-60">
+            <div class="col-sm-6 col-lg-4">
+              <!-- Box Modern-->
+              <article class="box-modern wow fadeIn" data-anime="circles-2">
+                  <div class="box-modern-media">
+                      <div class="box-modern-icon mdi mdi-account"></div>
+                      <div class="box-modern-circle box-modern-circle-1"></div>
+                  </div>
+                  <p class="box-modern-title">Cadastro de Pessoas</p>
+                  <div class="box-modern-text">
+                      <p>É importante para um político ter uma base de dados de eleitores cadastrados para entender as necessidades e preferências do eleitorado, personalizar campanhas e estratégias de comunicação, e mobilizar apoio durante as eleições. </p>
+                  </div>
+              </article>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+              <!-- Box Modern-->
+              <article class="box-modern wow fadeIn" data-anime="circles-2">
+                  <div class="box-modern-media">
+                    <div class="box-modern-icon mdi mdi-phone-in-talk"></div>
+                      <div class="box-modern-circle box-modern-circle-1"></div>
+                  </div>
+                  <p class="box-modern-title">Atendimento</p>
+                  <div class="box-modern-text">
+                      <p>Registrar e acompanhar as demandas dos eleitores de forma organizada, facilitando a resposta e o acompanhamento das solicitações, além de demonstrar comprometimento e transparência na prestação de serviços à comunidade.</p>
+                  </div>
+              </article>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+            <!-- Box Modern-->
+            <article class="box-modern wow fadeIn" data-anime="circles-2">
+                <div class="box-modern-media">
+                  <div class="box-modern-icon mdi mdi-calendar"></div>
+                    <div class="box-modern-circle box-modern-circle-1"></div>
+                </div>
+                <p class="box-modern-title">Agenda</p>
+                <div class="box-modern-text">
+                    <p>Organize e gerencie compromissos, reuniões, eventos e atividades importantes, garantindo que nada seja esquecido ou negligenciado.</p><br><br><br>
+                </div>
+            </article>
+        </div>
+          <div class="col-sm-6 col-lg-4">
+              <!-- Box Modern-->
+              <article class="box-modern wow fadeIn" data-anime="circles-2">
+                  <div class="box-modern-media">
+                      <div class="box-modern-icon mdi mdi-map-marker"></div>
+                      <div class="box-modern-circle box-modern-circle-1"></div>
+                  </div>
+                  <p class="box-modern-title">Geolocalização</p>
+                  <div class="box-modern-text">
+                      <p>A geolocalização permite que os usuários visualizem informações relevantes com base em sua localização geográfica.</p>
+                  </div>
+              </article>
+          </div>
+
+                      <div class="col-sm-6 col-lg-4">
+              <!-- Box Modern-->
+              <article class="box-modern wow fadeIn" data-anime="circles-2">
+                  <div class="box-modern-media">
+                    <div class="box-modern-icon mdi mdi-chart-bar"></div>
+                      <div class="box-modern-circle box-modern-circle-1"></div>
+                  </div>
+                  <p class="box-modern-title">Relatórios</p>
+                  <div class="box-modern-text">
+                      <p>Tenha todos os relatórios e diagnóticos dos serviços aqui oferecidos na palma da mão.</p><br>
+                  </div>
+              </article>
+          </div>
+
+          <div class="col-sm-6 col-lg-4">
+            <!-- Box Modern-->
+            <article class="box-modern wow fadeIn" data-anime="circles-2">
+                <div class="box-modern-media">
+                  <div class="box-modern-icon mdi mdi-file-document"></div>
+                    <div class="box-modern-circle box-modern-circle-1"></div>
+                </div>
+                <p class="box-modern-title">Processos</p>
+                <div class="box-modern-text">
+                    <p>Elabore todos os seus documentos dentro da nossa plataforma e acompanhe todas as etapas até a aprovação.</p>
+                </div>
+            </article>
+        </div>
+          <div class="col-sm-6 col-lg-4">
+              <!-- Box Modern-->
+              <article class="box-modern wow fadeIn" data-anime="circles-2">
+                  <div class="box-modern-media">
+                      <div class="box-modern-icon mdi mdi-bullhorn"></div>
+                      <div class="box-modern-circle box-modern-circle-1"></div>
+                  </div>
+                  <p class="box-modern-title">Marketing</p>
+                  <div class="box-modern-text">
+                      <p>Gerencie toda a parte de marketing da sua campanha ou mandato de forma simples e descomplicada.</p><br><br><br><br><br>
+                  </div>
+              </article>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+              <!-- Box Modern-->
+              <article class="box-modern wow fadeIn" data-anime="circles-2">
+                  <div class="box-modern-media">
+                      <div class="box-modern-icon mdi mdi-currency-usd"></div>
+                      <div class="box-modern-circle box-modern-circle-1"></div>
+                  </div>
+                  <p class="box-modern-title">Administrativo/Financeiro</p>
+                  <div class="box-modern-text">
+                      <p>Tenha total controle dos recursos da sua gestão</p><br><br><br><br><br><br>
+                  </div>
+              </article>
+          </div>
+          <div class="col-sm-6 col-lg-4">
+              <!-- Box Modern-->
+              <article class="box-modern wow fadeIn" data-anime="circles-2">
+                  <div class="box-modern-media">
+                      <div class="box-modern-icon mdi mdi-headphones"></div>
+                      <div class="box-modern-circle box-modern-circle-1"></div>
+                  </div>
+                  <p class="box-modern-title">Ouvidoria</p>
+                  <div class="box-modern-text">
+                      <p>Através dele, a sociedade poderá enviar elogios, reclamações, denúncias ou sugestões acerca do serviço público prestado. O gestor poderá gerenciar essas manifestações, recebendo subsídios para que haja o redirecionamento delas.</p>
+                  </div>
+              </article>
+          </div>
+          
+      </section>
+      <!-- About App-->
+      <section class="section section-xl bg-accent" id="sobre">
+        <div class="container">
+          <div class="row row-50 justify-content-center flex-lg-row-reverse align-items-center justify-content-lg-between">
+            <div class="col-sm-10 col-lg-5 wow fadeInRightSmall">
+              <div class="badge">Sobre o Estoqui</div>
+              <h3>O que é o Oráculo?</h3>
+              <p class="big inset-2">É um sistema desenvolvido para auxiliar políticos, partidos políticos, candidatos e suas equipes de campanha a 
+                gerenciar e organizar diversas atividades relacionadas à política. Ele geralmente oferece uma variedade de funcionalidades e ferramentas para ajudar na 
+                gestão de campanhas políticas, no relacionamento com eleitores, na análise de dados, na comunicação e no planejamento estratégico. Além disso, o Oráculo 
+                Político foi construído não apenas para campanhas eleitorais, mas também para auxiliar na gestão durante o mandato político.</p>
+              <a class="button button-primary button-shadow button-winona font-weight-sbold" href="#contato">Agende a sua demonstração</a>
+            </div>
+              <div class="col-sm-10 col-lg-6 wow fadeInLeftSmall text-center"><img class="img-custom" src="{% static 'static_website/images/politico_computador.png' %}" alt="" width="640" height="432"/>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <section id="contato"><br>
+      <h3 class="text-center">Solicite já a sua demonstração</h3>
+
+      <div class="container mt-5">
+        <form id="contactForm" action="{% url 'enviar_email' %}" method="POST">
+          {% csrf_token %} <!-- Adiciona o token CSRF aqui -->
+          <div id="alert-container" class="mt-3"></div>
+
+          <div class="form-group">
+            <label for="name">Nome:</label>
+            <input type="text" class="form-control" id="name" name="nome" placeholder="Digite seu nome" required>
+          </div>
+      
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu email" required>
+          </div>
+      
+          <div class="form-group">
+            <label for="message">Mensagem:</label>
+            <textarea class="form-control" id="message" name="mensagem" rows="4" placeholder="Digite sua mensagem" required></textarea>
+          </div>
+          <div class="text-center">
+            <button type="submit" class="button button-primary button-shadow button-winona font-weight-sbold">Enviar</button>
+          </div>
+        </form>
+      </div>
+      
+      
+
+
+
+
+
+
+      <footer class="section footer-classic"><a class="banner" href="">
+        <div class="footer-classic-aside">
+          <div class="container">
+            <p class="rights"><span>&copy;&nbsp;</span><span class="copyright-year"></span><span>&nbsp;</span><span>Estoqui</span>. Todos os direitos reservados. Desenvolvido por <a href="">Alisson Lima</a></p>
+          </div>
+        </div>
+
+      </footer>
+    </div>
+    <!-- alert bootstrap -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          const alertContainer = document.getElementById('alert-container');
+  
+          function exibirAlerta(mensagem, tipo) {
+              const alertClass = tipo === 'success' ? 'alert-success' : 'alert-danger';
+              const alertHTML = `
+                  <div class="alert ${alertClass} alert-dismissible fade show" role="alert">
+                      ${mensagem}
+                      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+              `;
+              alertContainer.innerHTML = alertHTML;
+          }
+  
+          // Função para enviar o formulário
+          function enviarFormulario(event) {
+              event.preventDefault();
+  
+              const formData = new FormData(event.target);
+  
+              fetch(event.target.action, {
+                  method: 'POST',
+                  body: formData
+              })
+              .then(response => response.json())
+              .then(data => {
+                  if (data.status === 'success') {
+                      exibirAlerta(data.mensagem, 'success');
+                  } else {
+                      exibirAlerta(data.mensagem, 'error');
+                  }
+              })
+              .catch(error => {
+                  exibirAlerta('Ocorreu um erro ao enviar o email.', 'error');
+              });
+          }
+  
+          const formulario = document.getElementById('contactForm');
+          formulario.addEventListener('submit', enviarFormulario);
+      });
+  </script>
+  
+
+    <div class="snackbars" id="form-output-global"></div>
+    <script src="{% static 'static_website/js/core.min.js' %}"></script>
+    <script src="{% static 'static_website/js/script.js' %}"></script>
+  </body>
+</html>

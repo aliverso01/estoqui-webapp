@@ -1,0 +1,81 @@
+<!-- No seu template 'header.html' -->
+
+{% load static %}
+{% block header %}
+<header id="page-topbar">
+    <div class="navbar-header" style="background-color: #3c3e52;">
+        <div class="d-flex">
+            <!-- LOGO -->
+            <div class="navbar-brand-box">
+                <a href="" class="logo logo-dark">
+                    <span class="logo-sm">
+                        <img src="{% static 'images/logo-oraculo-branca-sm.png' %}" alt="" height="30">
+                    </span>
+                </a>
+
+                <a href="" class="logo logo-light">
+                    <span class="logo-sm">
+                        <img src="{% static 'images/logo-oraculo-branca-sm.png' %}" alt="" style="margin-left: -10px;" height="50">
+                    </span>
+                    <span class="logo-lg">
+                        <img src="{% static 'images/logo-oraculo-branca.png' %}" alt="" height="45">
+                    </span>
+                </a>
+            </div>
+
+            <button type="button" class="btn btn-sm px-3 font-size-24 header-item waves-effect" id="vertical-menu-btn">
+                <i class="mdi mdi-menu text-white"></i>
+            </button>
+
+        </div>
+
+        <div class="d-flex">
+
+            <div class="dropdown d-inline-block">
+                <button type="button" class="btn header-item noti-icon waves-effect" id="page-header-notifications-dropdown"
+                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="mdi mdi-bell-outline text-white"></i>
+                    <span class="badge bg-danger rounded-pill"></span>
+                </button>
+                <div class="dropdown-menu dropdown-menu-left">
+                    <!-- item-->
+                    <a class="dropdown-item" href="">Notificação 01</a>
+                    <a class="dropdown-item" href="">Notificação 02</a>
+            </div>
+
+            <div class="dropdown d-inline-block">
+                <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
+                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <span class="d-none d-xl-inline-block ms-1 text-white" key="t-henry">{{ user.username|capfirst }}</span>
+                    <img id="fotoperfil" class="rounded-circle header-profile-user" src="{% if fotoperfil %}{{ fotoperfil }}{% else %}{% static 'images/users/anonimo.svg' %}{% endif %}" alt="" style="height: 50px; width: 50px;">
+
+                </button>
+                <div class="dropdown-menu dropdown-menu-end">
+                    <!-- item-->
+                    <a class="dropdown-item" href="">
+                        <i class="mdi mdi-account-circle font-size-17 align-middle me-1" key="Profile"></i> Perfil
+                    </a>
+                    <div class="dropdown-divider"></div>
+
+                    {% if user.is_authenticated %}
+                    {% if user.has_usable_password %}
+                    <a class="dropdown-item" href="{% url 'password_change' %}">
+                        <i class="bx bx-key font-size-16 align-middle me-1 mdi mdi-key-variant"></i> Trocar senha
+                    </a>
+                    <a class="dropdown-item text-danger" href="{% url 'logout' %}">
+                        <i class="bx bx-log-out font-size-16 align-middle me-1 text-danger mdi mdi-logout-variant" key="Logout"></i>Sair
+                    </a>
+                    {% endif %}
+                    {% else %}
+                    <a class="dropdown-item" href="{% url 'login' %}">
+                        <i class="bx bx-log-in font-size-16 align-middle me-1 mdi mdi-login-variant"></i> Entrar
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+{% endblock %}
