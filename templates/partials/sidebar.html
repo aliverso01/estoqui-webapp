@@ -13,7 +13,7 @@
                     <li class="menu-title" key="Components">Cadastros</li>
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
-                            <i class="fas fa-users"></i>
+                            <i class="fas fa-box"></i>
                             <span key="UI_Elements">Produto</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
@@ -24,7 +24,7 @@
 
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
-                            <i class="fas fa-users"></i>
+                            <i class="fas fa-tags"></i>
                             <span key="UI_Elements">Categoria</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
@@ -34,26 +34,20 @@
                     </li>
                     <li>
                         <a href="javascript: void(0);" class="has-arrow waves-effect">
-                            <i class="fas fa-users"></i>
+                            <i class="fas fa-file-alt"></i>
                             <span key="UI_Elements">Ficha Técnica</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="#" key="Alerts">Cadastrar</a></li>
-                            <li><a href="#" key="Buttons">Consultar</a></li>
+                            <li><a href="{% url 'create_ficha_tecnica' %}" key="Alerts">Cadastrar</a></li>
+                            <li><a href="{% url 'lista_fichas_tecnicas' %}" key="Buttons">Consultar</a></li>
                         </ul>
                     </li>
 
                     <li class="menu-title" key="Components">Movimentação</li>
                     <li>
                         <a href="#" class=" waves-effect">
-                            <i class="far fa-calendar-alt"></i>
-                            <span key="Calendar">Entrada</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class=" waves-effect">
-                            <i class="far fa-calendar-alt"></i>
-                            <span key="Calendar">Saída</span>
+                            <i class="fas fa-exchange-alt"></i>
+                            <span key="Calendar">Movimentação</span>
                         </a>
                     </li>
                 </ul>

@@ -1,20 +1,20 @@
-{% extends "partials/base.html" %}
+{% extends 'partials/base.html' %}
 
 {% block content %}
 
 <div class="page-title-box">
     <div class="row align-items-center">
         <div class="col-md-8">
-            <h6 class="page-title">Lista de produtos</h6>
+            <h6 class="page-title">Lista de Fichas Técnicas</h6>
             <ol class="breadcrumb m-0">
                 <li class="breadcrumb-item"><a href="#">Estoqui</a></li>
-                <li class="breadcrumb-item"><a href="#">Produtos</a></li>
+                <li class="breadcrumb-item"><a href="#">Fichas Técnicas</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Consulta</li>
             </ol>
         </div>
         <div class="col-md-4 text-end">
-            <a href="{% url 'create_produto' %}" class="btn btn-lg btn-primary">
-                <i class="mdi mdi-plus"></i> Novo Produto
+            <a href="{% url 'create_ficha_tecnica' %}" class="btn btn-lg btn-primary">
+                <i class="mdi mdi-plus"></i> Nova Ficha Técnica
             </a>
         </div>
     </div>
@@ -28,39 +28,40 @@
                     <table class="table table-editable table-nowrap align-middle table-edits">
                         <thead>
                             <tr style="cursor: pointer;">
-                            <th>Nome</th>
-                            <th>Preço/Unidade</th>
-                            <th>Total</th>
-                            <th>Ações</th>
+                                <th>Nome</th>
+                                <th>Insumos</th>
+                                <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {% for produto in produtos %}
+                            {% for ficha in fichas_tecnicas %}
                                 <tr>
-                                    <td>{{ produto.nome }} <br><span class="text-muted text-white p-1 rounded-pill" style="background-color: {{ produto.categoria.cor }};">{{ produto.categoria.nome }}</span></td>
-                                    <td>{{ produto.preco }}/{{ produto.unidade.sigla }}</td>
-                                    <td>{{ produto.total_custo }}</td>
+                                    <td>{{ ficha.nome }}</td>
                                     <td>
-                                        <a href="{% url 'edit_produto' produto.id %}" class="btn btn-warning">Editar</a>
-                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{ produto.id }}">Deletar</button>
+                                        {% for insumo in ficha.insumos.all %}
+                                            {{ insumo.produto.nome }}{% if not forloop.last %}, {% endif %}
+                                        {% endfor %}
+                                    </td>
+                                    <td>
+                                        <a href="{% url 'add_insumo' ficha.id %}" class="btn btn-primary">Adicionar Insumo</a>
+                                        <a href="{% url 'edit_ficha_tecnica' ficha.id %}" class="btn btn-warning">Editar</a>
+                                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{ ficha.id }}">Deletar</button>
                                     </td>
                                 </tr>
-
                                 <!-- Modal -->
-                                <div class="modal fade" id="confirmDeleteModal{{ produto.id }}" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel{{ produto.id }}" aria-hidden="true">
+                                <div class="modal fade" id="confirmDeleteModal{{ ficha.id }}" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel{{ ficha.id }}" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="confirmDeleteModalLabel{{ produto.id }}">Confirmar Exclusão</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar">
-                                                </button>
+                                                <h5 class="modal-title" id="confirmDeleteModalLabel{{ ficha.id }}">Confirmar Exclusão</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
                                             </div>
                                             <div class="modal-body">
-                                                Tem certeza que deseja excluir o produto "{{ produto.nome }}"?
+                                                Tem certeza que deseja excluir a ficha técnica "{{ ficha.nome }}"?
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                                                <form action="{% url 'delete_produto' produto.id %}" method="post" style="display: inline;">
+                                                <form action="{% url 'delete_ficha_tecnica' ficha.id %}" method="post" style="display: inline;">
                                                     {% csrf_token %}
                                                     <button type="submit" class="btn btn-danger">Excluir</button>
                                                 </form>
@@ -70,19 +71,15 @@
                                 </div>
                             {% empty %}
                                 <tr>
-                                    <td colspan="4">Nenhum produto encontrado.</td>
+                                    <td colspan="3">Nenhuma ficha técnica encontrada.</td>
                                 </tr>
                             {% endfor %}
                         </tbody>
-                        <!-- end tbody -->
                     </table>
-                    <!-- end table -->
                 </div>
-                <!-- end -->
             </div>
         </div>
-    </div> <!-- end col -->
+    </div>
 </div>
 
 {% endblock %}
-

@@ -9,7 +9,7 @@ from veltrix import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     # Dashboards View
-    path('', views.DashboardView.as_view(), name='dashboard'),
+    path('', views.Dashboard, name='dashboard'),
     path('acesso/', include("acesso.urls")),
 
     path(
@@ -25,6 +25,7 @@ urlpatterns = [
     # Urls dos modulos criados
     path('produtos/', include('modulos.produto.urls')),
     path('categorias/', include('modulos.categoria.urls')),
+    path('ficha-tecnica/', include('modulos.ficha_tecnica.urls')),
 
 ]
 

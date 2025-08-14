@@ -1,0 +1,141 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="page-title-box">
+    <div class="row align-items-center">
+        <div class="col-md-8">
+            <h6 class="page-title">Adicionar Insumo à Ficha Técnica</h6>
+            <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item"><a href="#">Estoqui</a></li>
+                <li class="breadcrumb-item"><a href="#">Fichas Técnicas</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Adicionar Insumo</li>
+            </ol>
+        </div>
+        <div class="col-md-4 text-end">
+            <a href="{% url 'lista_fichas_tecnicas' %}" class="btn btn-lg btn-secondary">
+                <i class="mdi mdi-arrow-left"></i> Voltar para Lista
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card p-4">
+            <div class="card-body">
+                <h4 class="mb-4">Ficha Técnica: <strong>{{ ficha_tecnica.nome }}</strong></h4>
+                <form method="post" class="row align-items-end mb-4">
+                    {% csrf_token %}
+                    <div class="col-md-4 mb-3">
+                        <label for="id_produto" class="form-label">Produto</label>
+                        {{ form.produto }}
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="id_quantidade" class="form-label">Quantidade</label>
+                        {{ form.quantidade }}
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <label for="id_unidade" class="form-label">Unidade</label>
+                        {{ form.unidade }}
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <button type="submit" class="btn btn-lg btn-primary w-100 mt-2">Adicionar Insumo</button>
+                    </div>
+                </form>
+
+                <h5 class="mb-3">Insumos já adicionados</h5>
+                <div class="table-responsive">
+                    <table class="table table-editable table-nowrap align-middle table-edits">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Quantidade</th>
+                                <th>Unidade</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for insumo in insumos %}
+                            <tr>
+                                <td>{{ insumo.produto }}</td>
+                                <td>{{ insumo.quantidade }}</td>
+                                <td>{{ insumo.unidade }}</td>
+                                <td>
+                                    <!-- Botão Editar (abre modal) -->
+                                    <button type="button" class="btn btn-sm btn-warning" data-bs-toggle="modal" data-bs-target="#editInsumoModal{{ insumo.id }}">
+                                        Editar
+                                    </button>
+                                    <!-- Modal Editar -->
+                                    <div class="modal fade" id="editInsumoModal{{ insumo.id }}" tabindex="-1" role="dialog" aria-labelledby="editInsumoModalLabel{{ insumo.id }}" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <form method="post" action="{% url 'edit_insumo' ficha_tecnica.id insumo.id %}">
+                                                    {% csrf_token %}
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="editInsumoModalLabel{{ insumo.id }}">Editar Insumo</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="mb-3">
+                                                            <label>Produto</label>
+                                                            <input type="text" name="produto" class="form-control" value="{{ insumo.produto }}">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label>Quantidade</label>
+                                                            <input type="number" step="any" name="quantidade" class="form-control" value="{{ insumo.quantidade }}">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label>Unidade</label>
+                                                            <input type="text" name="unidade" class="form-control" value="{{ insumo.unidade }}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                        <button type="submit" class="btn btn-warning">Salvar</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Botão Deletar (abre modal) -->
+                                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteInsumoModal{{ insumo.id }}">
+                                        Deletar
+                                    </button>
+                                    <!-- Modal Deletar -->
+                                    <div class="modal fade" id="deleteInsumoModal{{ insumo.id }}" tabindex="-1" role="dialog" aria-labelledby="deleteInsumoModalLabel{{ insumo.id }}" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="deleteInsumoModalLabel{{ insumo.id }}">Confirmar Exclusão</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Tem certeza que deseja excluir o insumo "{{ insumo.produto }}"?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                                    <form method="post" action="{% url 'delete_insumo' ficha_tecnica.id insumo.id %}" style="display:inline;">
+                                                        {% csrf_token %}
+                                                        <button type="submit" class="btn btn-danger">Excluir</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="4">Nenhum insumo adicionado ainda.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

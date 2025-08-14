@@ -1,14 +1,42 @@
 {% extends 'partials/base.html' %}
 {% load static %}
-{% block extra_css %}
 
-{% endblock  %}
+{% block extra_css %}
+{% endblock %}
 
 {% block content %}
-<div class="row">
-   <h1>Bem-vindo ao seu painel!</h1>
+<div class="page-title-box">
+   <div class="row align-items-center">
+      <div class="col-md-8">
+         <h6 class="page-title">Dashboard</h6>
+         <ol class="breadcrumb m-0">
+            <li class="breadcrumb-item"><a href="#">Estoqui</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
+         </ol>
+      </div>
+   </div>
 </div>
 
-
-
+<div class="row">
+   <div class="col-xl-3 col-md-6">
+      <div class="card mini-stat text-white" style="background-color: #556ee6;">
+         <div class="card-body">
+            <div class="mb-4">
+               <h5 class="font-size-16 text-uppercase text-white">Produtos</h5>
+               <h4 class="fw-medium font-size-24">
+                  {{ produtos_count }}
+                  <i class="mdi mdi-cube-outline text-white ms-2"></i>
+               </h4>
+            </div>
+            <div class="pt-2">
+               <div class="float-end">
+                  <a href="{% url 'lista_produtos' %}" class="text-white-50"><i class="mdi mdi-arrow-right h5 text-white-50"></i></a>
+               </div>
+               <p class="text-white-50 mb-0 mt-1">Ver produtos</p>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- Adicione outros cards aqui conforme necessário -->
+</div>
 {% endblock %}

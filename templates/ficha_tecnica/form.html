@@ -1,0 +1,41 @@
+{% extends 'partials/base.html' %}
+
+{% block content %}
+<div class="page-title-box">
+    <div class="row align-items-center">
+        <div class="col-md-8">
+            <h6 class="page-title">
+                {% if form.instance.id %}Editar{% else %}Criar{% endif %} Ficha Técnica
+            </h6>
+            <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item"><a href="#">Estoqui</a></li>
+                <li class="breadcrumb-item"><a href="#">Fichas Técnicas</a></li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    {% if form.instance.id %}Editar{% else %}Criar{% endif %}
+                </li>
+            </ol>
+        </div>
+        <div class="col-md-4 text-end">
+            <a href="{% url 'lista_fichas_tecnicas' %}" class="btn btn-lg btn-secondary">
+                <i class="mdi mdi-arrow-left"></i> Voltar
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="card p-4">
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">
+                        {% if form.instance.id %}Salvar{% else %}Criar{% endif %}
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
