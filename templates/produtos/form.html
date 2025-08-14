@@ -1,0 +1,64 @@
+{% extends 'partials/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="page-title-box">
+    <div class="row align-items-center">
+        <div class="col-md-8">
+            <h6 class="page-title">Lista de produtos</h6>
+            <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item"><a href="#">Estoqui</a></li>
+                <li class="breadcrumb-item"><a href="#">Produtos</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{% if form.instance.pk %}Editar{% else %}Criar{% endif %}</li>
+            </ol>
+        </div>
+    </div>
+</div>
+
+<div class="card p-4">
+    <h1></h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-6 mt-2">
+                {{ form.nome.label_tag }}
+                {{ form.nome }}
+            </div>
+            <div class="col-md-6 mt-2">
+                {{ form.unidade.label_tag }}
+                {{ form.unidade }}
+            </div>
+            <div class="col-md-6 mt-2">
+                {{ form.categoria.label_tag }}
+                {{ form.categoria }}
+            </div>
+            <div class="col-md-6 mt-2">
+                {{ form.validade.label_tag }}   
+                {{ form.validade }}
+            </div>
+            <div class="col-md-6 mt-2">
+                {{ form.quantidade.label_tag }}
+                {{ form.quantidade }}
+            </div>
+            <div class="col-md-6 mt-2">
+                {{ form.estoque_minimo.label_tag }} 
+                {{ form.estoque_minimo }}
+            </div>
+            <div class="col-md-6 mt-2">
+                {{ form.preco.label_tag }}
+                {{ form.preco }}
+            </div>
+            <div class="col-md-6 mt-2">
+                {{ form.compoe_cmv.label_tag }}
+                {{ form.compoe_cmv }}
+            </div>
+
+        </div>
+        <div class="d-flex justify-content-end gap-2">
+            <a href="{% url 'lista_produtos' %}" type="button" class="btn btn-lg btn-secondary mt-4">Cancelar</a>
+            <button type="submit" class="btn btn-lg btn-primary mt-4">Cadastrar</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

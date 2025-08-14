@@ -17,8 +17,8 @@
                             <span key="UI_Elements">Produto</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="#" key="Alerts">Cadastrar</a></li>
-                            <li><a href="#" key="Buttons">Consultar</a></li>
+                            <li><a href="{% url 'create_produto' %}" key="Alerts">Cadastrar</a></li>
+                            <li><a href="{% url 'lista_produtos' %}" key="Buttons">Consultar</a></li>
                         </ul>
                     </li>
 
@@ -28,8 +28,8 @@
                             <span key="UI_Elements">Categoria</span>
                         </a>
                         <ul class="sub-menu" aria-expanded="false">
-                            <li><a href="#" key="Alerts">Cadastrar</a></li>
-                            <li><a href="#" key="Buttons">Consultar</a></li>
+                            <li><a href="{% url 'create_categoria' %}" key="Alerts">Cadastrar</a></li>
+                            <li><a href="{% url 'lista_categorias' %}" key="Buttons">Consultar</a></li>
                         </ul>
                     </li>
                     <li>

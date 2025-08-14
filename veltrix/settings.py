@@ -59,18 +59,17 @@ INSTALLED_APPS = [
 
     # Seus aplicativos
     'acesso',
-    
-    # Comentado para desativar temporariamente
-    #'financeiro',
-    #'agenda',
-    #'administrativo',
-    #'marketing',
-    
+    'modulos.produto.apps.ProdutoConfig',
+    'modulos.unidade.apps.UnidadeConfig',
+    'modulos.categoria.apps.CategoriaConfig',
+    'modulos.ficha_tecnica.apps.FichaTecnicaConfig',
+    'modulos.movimentacao.apps.MovimentacaoConfig',
     # Aplicativos compartilhados
     'tinymce',
     'crispy_forms',
     'crispy_bootstrap5',
     'auditlog',
+    'colorfield'
 ]
 
 
@@ -143,9 +142,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Fortaleza'
 
 USE_I18N = True
 

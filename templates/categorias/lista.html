@@ -1,0 +1,82 @@
+{% extends "partials/base.html" %}
+
+{% block content %}
+
+<div class="page-title-box">
+    <div class="row align-items-center">
+        <div class="col-md-8">
+            <h6 class="page-title">Categorias</h6>
+            <ol class="breadcrumb m-0">
+                <li class="breadcrumb-item"><a href="#">Estoqui</a></li>
+                <li class="breadcrumb-item"><a href="#">Categoria</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Consulta</li>
+            </ol>
+        </div>
+        <div class="col-md-4 text-end">
+            <a href="{% url 'create_categoria' %}" class="btn btn-lg btn-primary">
+                <i class="mdi mdi-plus"></i> Nova Categoria
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    {% for categoria in categorias %}
+    <div class="col-xl-3 col-md-6">
+        <div class="card mini-stat text-white" style="background-color: {{ categoria.cor }};">
+            <div class="card-body">
+                <div class="mb-4">
+                    <h5 class="font-size-16 text-uppercase text-white">{{ categoria.nome }}</h5>
+                    <h4 class="fw-medium font-size-24">{{ categoria.produtos_count }} <i class="mdi mdi-arrow-up text-success ms-2"></i></h4>
+                    <div class="mini-stat-label">
+                        <a href="{% url 'edit_categoria' categoria.id %}" class="btn btn-lg text-light me-1" title="Editar">
+                            <i class="mdi mdi-pencil"></i>
+                        </a>
+                        <button href="" class="btn btn-lg text-light" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal{{ categoria.id }}" title="Excluir">
+                            <i class="mdi mdi-delete"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="pt-2">
+                    <div class="float-end">
+                        <a href="#" class="text-white-50"><i class="mdi mdi-arrow-right h5 text-white-50"></i></a>
+                    </div>
+
+                    <p class="text-white-50 mb-0 mt-1">Ver produtos</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="confirmDeleteModal{{ categoria.id }}" tabindex="-1" role="dialog" aria-labelledby="confirmDeleteModalLabel{{ categoria.id }}" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="confirmDeleteModalLabel{{ categoria.id }}">Confirmar Exclusão</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Tem certeza que deseja excluir a categoria "{{ categoria.nome }}"?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <form action="{% url 'delete_categoria' categoria.id %}" method="post" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger">Excluir</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <div class="col-xl-3 col-md-6">
+        <h1>Nenhum produto encontrado.</h1>
+    </div>
+{% endfor %}
+</div>
+    
+
+{% endblock %}
+

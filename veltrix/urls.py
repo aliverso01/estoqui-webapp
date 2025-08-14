@@ -22,6 +22,10 @@ urlpatterns = [
     # auth-allath
     path('account/', include('allauth.urls')),
 
+    # Urls dos modulos criados
+    path('produtos/', include('modulos.produto.urls')),
+    path('categorias/', include('modulos.categoria.urls')),
+
 ]
 
 if settings.DEBUG:
